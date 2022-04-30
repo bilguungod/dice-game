@@ -1,6 +1,9 @@
 // Тоглогчийн ээлжийг хадгалах хувьсагч, 1-р тоглогчийг 0, 2-р тоглогчийг 1 гэе.
 var activePlayer;
 
+// togloom duussan esehiig hadgalah tulwiin huwisagch
+var isGameOver;
+
 // Тоглогчийн цуглуулсан оноог хадгалах хувьсагч
 var scores;
 
@@ -14,6 +17,8 @@ initGame();
 
 // shoog shideh event listener 
 document.querySelector(".btn-roll").addEventListener("click", function() {
+    if(isGameOver !== true){
+        
 
     //  1-6 dotor sanamsargui neg too gargaj awna
     var diceNumber = Math.floor(Math.random() * 6) + 1;
@@ -35,6 +40,9 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
     //    1 buusan tul toglogchin eeljiig solino.
     switchToNextPlayer();
    }
+    } else{
+        alert('togloom duuschihsan baina shuudee naizaa, NEW GAME darj ehleh hergtei.')
+    }
 });
 // hold towchnii event listener 
 document.querySelector(".btn-hold").addEventListener('click', function(){
@@ -45,7 +53,10 @@ document.querySelector(".btn-hold").addEventListener('click', function(){
     document.getElementById("score-" + activePlayer).textContent = scores[activePlayer];
 
     //  ug toglogchiin onoo 100-s ih bwal hojno.
-    if(scores[activePlayer] >= 100){
+    if(scores[activePlayer] >= 10){
+        // togloomiig duussan tuluwt oruulna
+        isGameOver = true;
+
         // ylagch gesen tekstiig nerniih n orond gargana.
         document.getElementById("name-" + activePlayer).textContent = "WINNER!!!";
         document.querySelector('.player-' + activePlayer +'-panel').classList.add('winner');
@@ -76,6 +87,10 @@ function switchToNextPlayer(){
 document.querySelector('.btn-new').addEventListener('click', initGame);
 
 function initGame(){
+    //  togloom ehellee gedeg tuluwt oruulna.
+    isGameOver = false;
+
+
     // Тоглогчийн ээлжийг хадгалах хувьсагч, 1-р тоглогчийг 0, 2-р тоглогчийг 1 гэе.
 activePlayer = 0;
 

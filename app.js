@@ -1,27 +1,16 @@
 // Тоглогчийн ээлжийг хадгалах хувьсагч, 1-р тоглогчийг 0, 2-р тоглогчийг 1 гэе.
-var activePlayer = 0;
+var activePlayer;
 
 // Тоглогчийн цуглуулсан оноог хадгалах хувьсагч
-var scores = [0, 0];
+var scores;
 
 // Тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
-var roundScore = 0;
+var roundScore;
 
-// Шооны аль талаар буусныг хадгалах хувьсагч хэрэгтэй, 1-6 гэсэн утгыг энэ хувьсагчид санамсаргүйгээр үүсгэнэ.
-// var dice = Math.floor(Math.random() * 6) + 1;
-
-
-
-// программ эхлэхэд бэлтгэе.
-document.getElementById("score-0").textContent = '0';
-document.getElementById("score-1").textContent = '0';
-
-document.getElementById("current-0").textContent = '0';
-document.getElementById("current-1").textContent = '0';
 
 var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
 
+initGame();
 
 // shoog shideh event listener 
 document.querySelector(".btn-roll").addEventListener("click", function() {
@@ -80,4 +69,44 @@ function switchToNextPlayer(){
     document.querySelector('.player-1-panel').classList.toggle('active');
     // shoog tur alga bolgono
     diceDom.style.display = "none";
+}
+
+//  shine togloom ehluuleh buttonii event listener
+
+document.querySelector('.btn-new').addEventListener('click', initGame);
+
+function initGame(){
+    // Тоглогчийн ээлжийг хадгалах хувьсагч, 1-р тоглогчийг 0, 2-р тоглогчийг 1 гэе.
+activePlayer = 0;
+
+// Тоглогчийн цуглуулсан оноог хадгалах хувьсагч
+scores = [0, 0];
+
+// Тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
+roundScore = 0;
+
+// Шооны аль талаар буусныг хадгалах хувьсагч хэрэгтэй, 1-6 гэсэн утгыг энэ хувьсагчид санамсаргүйгээр үүсгэнэ.
+// var dice = Math.floor(Math.random() * 6) + 1;
+
+
+
+// программ эхлэхэд бэлтгэе.
+document.getElementById("score-0").textContent = '0';
+document.getElementById("score-1").textContent = '0';
+
+document.getElementById("current-0").textContent = '0';
+document.getElementById("current-1").textContent = '0';
+
+document.getElementById("name-0").textContent = "Player 1";
+document.getElementById("name-1").textContent = "Player 2";
+
+document.querySelector(".player-0-panel").classList.remove("winner");
+document.querySelector(".player-1-panel").classList.remove("winner");
+
+document.querySelector(".player-0-panel").classList.remove("active");
+document.querySelector(".player-1-panel").classList.remove("active");
+
+document.querySelector(".player-0-panel").classList.add("active");
+
+diceDom.style.display = "none";
 }

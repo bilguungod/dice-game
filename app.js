@@ -53,7 +53,7 @@ document.querySelector(".btn-hold").addEventListener('click', function(){
     document.getElementById("score-" + activePlayer).textContent = scores[activePlayer];
 
     //  ug toglogchiin onoo 100-s ih bwal hojno.
-    if(scores[activePlayer] >= 10){
+    if(scores[activePlayer] >= 100){
         // togloomiig duussan tuluwt oruulna
         isGameOver = true;
 
